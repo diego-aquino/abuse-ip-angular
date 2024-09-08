@@ -2,6 +2,11 @@
 
 Projeto desenvolvido com Angular para buscar informações de um IP na API do [AbuseIPDB](https://docs.abuseipdb.com/).
 
+## Pré-requisitos
+
+- [Node.js v20.11.0](https://nodejs.org/en/)
+- [pnpm v9.9.0](https://pnpm.io/)
+
 ## Desenvolvimento
 
 1. Coloque as variáveis de ambiente necessárias no arquivo [environment.development.ts](src/environments/environment.development.ts).

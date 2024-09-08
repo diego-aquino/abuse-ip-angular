@@ -1,6 +1,7 @@
 {
   "name": "abuse-ip-angular",
   "version": "0.0.0",
+  "packageManager": "pnpm@9.9.0",
   "scripts": {
     "ng": "ng",
     "dev": "ng serve",
