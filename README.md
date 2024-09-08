@@ -1,27 +1,30 @@
-# AbuseIpAngular
+# AbuseIP Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3.
+Projeto desenvolvido com Angular para buscar informações de um IP na API do [AbuseIPDB](https://docs.abuseipdb.com/).
 
-## Development server
+## Desenvolvimento
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Coloque as variáveis de ambiente necessárias no arquivo [environment.development.ts](src/environments/environment.development.ts).
 
-## Code scaffolding
+2. Execute o comando `pnpm install` para instalar as dependências.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+3. Execute o comando `pnpm dev` para iniciar o servidor de desenvolvimento. Navegue até `http://localhost:4200/`. A aplicação será recarregada automaticamente se você alterar qualquer um dos arquivos de origem.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Execute o comando `pnpm build` para compilar o projeto. Os artefatos de construção serão armazenados no diretório `dist/`.
 
-## Running unit tests
+## Testes
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Execute o comando `pnpm test` para executar os testes unitários via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Executando testes end-to-end
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Execute o comando `pnpm e2e` para executar os testes end-to-end via [Protractor](http://www.protractortest.org/).
 
-## Further help
+## Escopo do projeto
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Ter uma única tela com um input de busca e um botão de submit
+- Poder digitar um IP para buscar
+- Ao buscar, fazer GET /check para trazer os dados do IP, fazer GET /reports para mostrar os da última semana, e fazer GET /blacklist para verificar se o IP buscado está na lista
+- Abaixo do input, mostrar os dados do IP buscado, mostrar os reports como cards, se o IP está blacklisted e qual é a data e horário do último report (usar reduce)
