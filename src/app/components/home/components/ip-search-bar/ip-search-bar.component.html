@@ -1,0 +1,26 @@
+<form [formGroup]="formGroup" (submit)="onSubmit($event)">
+  <div class="relative flex items-center {{ !formErrors.ip && 'mb-[1.375rem]' }}">
+    <label
+      class="flex items-center py-1 pl-4 flex-1 bg-surface-medium rounded-lg focus-within:ring-2 pr-24 focus-within:ring-neutral-dark focus-within:ring-opacity-30 transition-shadow"
+    >
+      <span class="sr-only"> Endereço IP </span>
+
+      <app-search-icon class="w-5 h-5" />
+
+      <input
+        #ipInput
+        id="ip"
+        formControlName="ip"
+        type="text"
+        placeholder="Digite o endereço IP..."
+        class="bg-transparent p-2 ml-2 outline-none placeholder:text-neutral-medium placeholder:text-opacity-60 flex-1"
+      />
+    </label>
+
+    <app-button class="absolute right-1" [disabled]="!submitButtonEnabled"> Verificar </app-button>
+  </div>
+
+  @if (formErrors.ip) {
+    <app-form-error [message]="formErrors.ip" class="text-xs mt-1 block ml-1" />
+  }
+</form>

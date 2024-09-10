@@ -1,10 +1,20 @@
 import { Component } from '@angular/core';
+import {
+  FormValues as IPSearchFormValues,
+  IPSearchBarComponent,
+} from './components/ip-search-bar/ip-search-bar.component';
+import { IPSummaryComponent } from './components/ip-summary/ip-summary.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [IPSearchBarComponent, IPSummaryComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
 })
-export class HomeComponent {}
+export class HomeComponent {
+  ip = '';
+
+  onSearchBarSubmit(event: IPSearchFormValues) {
+    this.ip = event.ip;
+  }
+}
