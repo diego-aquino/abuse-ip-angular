@@ -1,0 +1,25 @@
+# Dependencies
+/node_modules
+/pnpm-lock.yaml
+
+# Build
+/dist
+/tmp
+
+# Configuration
+.husky
+
+# Angular
+.angular/
+*.angular/
+
+# Cache
+.cache
+.eslintcache
+tsconfig.tsbuildinfo
+
+# Cache
+.cache
+.eslintcache
+tsconfig.tsbuildinfo
+
