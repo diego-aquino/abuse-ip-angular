@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  abuseIpUrl: 'https://api.abuseipdb.com/api/v2',
+  abuseIpUrl: 'https://abuse-ip-proxy-ztbykxad.vercel.app/api/v2',
   abuseIpApiKey: '',
 };
