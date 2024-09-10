@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { SearchIconComponent } from '@/app/components/icons/search-icon/search-icon.component';
-import { ButtonComponent } from '../../../common/button/button.component';
-import { FormErrorComponent } from '../../../common/form/form-error/form-error.component';
+import { ButtonComponent } from '@/app/components/common/button/button.component';
+import { FormErrorComponent } from '@/app/components/common/form/form-error/form-error.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 const IP_REGEX = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/;
