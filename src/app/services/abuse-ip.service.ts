@@ -12,7 +12,11 @@ export class AbuseIpService {
   constructor(private httpClient: HttpClient) {}
 
   public check(ipAddress: string) {
-    return this.httpClient.get(`${this.abuseIpUrl}/check/${ipAddress}?maxAgeInDays=90`, {
+    return this.httpClient.get(`${this.abuseIpUrl}/check`, {
+      params: {
+        ipAddress,
+        maxAgeInDays: '90',
+      },
       headers: {
         Key: this.abuseIpApiKey,
       },
