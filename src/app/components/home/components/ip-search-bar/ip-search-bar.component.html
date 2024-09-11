@@ -9,7 +9,6 @@
 
       <input
         #ipInput
-        id="ip"
         formControlName="ip"
         type="text"
         placeholder="Digite o endereço IP..."
@@ -17,7 +16,7 @@
       />
     </label>
 
-    <app-button class="absolute right-1" [disabled]="!submitButtonEnabled"> Verificar </app-button>
+    <app-button type="button" class="absolute right-1" [disabled]="!submitButtonEnabled"> Verificar </app-button>
   </div>
 
   @if (formErrors.ip) {
