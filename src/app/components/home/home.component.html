@@ -1,1 +1,9 @@
-<p class="font-semibold text-2xl text-center h-full text-neutral-darker">Welcome to the home page!</p>
+<div class="bg-surface-medium min-h-screen p-8 flex flex-col">
+  <main class="max-w-4xl mx-auto w-full bg-surface-light flex-1 flex flex-col rounded-xl p-8">
+    <app-ip-search-bar (submitSearch)="onSearchBarSubmit($event)" class="w-full" />
+
+    @if (ip) {
+      <app-ip-summary [ip]="ip" class="mt-6" />
+    }
+  </main>
+</div>

@@ -17,6 +17,7 @@ module.exports = {
         warning: '#FFA318',
         positive: '#3B9410',
       },
+      transparent: 'transparent',
     },
     fontSize: {
       xs: '0.75rem',
