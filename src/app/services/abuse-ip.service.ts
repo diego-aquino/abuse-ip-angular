@@ -16,6 +16,7 @@ export class AbuseIpService {
       params: {
         ipAddress,
         maxAgeInDays: '90',
+        verbose: '', //countryName won't be returned without this
       },
       headers: {
         Key: this.abuseIpApiKey,
