@@ -1,3 +1,30 @@
-<div class="py-4 px-6 bg-surface-medium rounded-lg">
-  <h1 class="font-medium text-xl">IP: {{ ip }}</h1>
+<div *ngIf="ipData" class="py-4 px-6 bg-surface-medium rounded-lg">
+  <h1 class="font-medium text-xl">IP Address: {{ ipData.ipAddress }}</h1>
+  <br />
+  <p><strong>Address:</strong> {{ ipData.ipAddress }}</p>
+  <p><strong>Is Public:</strong> {{ ipData.isPublic ? 'Yes' : 'No' }}</p>
+  <p><strong>IP Version:</strong> {{ ipData.ipVersion }}</p>
+  <p><strong>Is Whitelisted:</strong> {{ ipData.isWhitelisted ? 'Yes' : 'No' }}</p>
+  <p><strong>Abuse Confidence Score:</strong> {{ ipData.abuseConfidenceScore }}</p>
+  <p><strong>Country Code:</strong> {{ ipData.countryCode }}</p>
+  <p><strong>Country Name:</strong> {{ ipData.countryName }}</p>
+  <p><strong>Usage Type:</strong> {{ ipData.usageType }}</p>
+  <p><strong>ISP:</strong> {{ ipData.isp }}</p>
+  <p><strong>Domain:</strong> {{ ipData.domain || '---' }}</p>
+  <p><strong>Hostnames:</strong> {{ ipData.hostnames.join(', ') }}</p>
+  <p><strong>Is Tor:</strong> {{ ipData.isTor ? 'Yes' : 'No' }}</p>
+  <p><strong>Total Reports:</strong> {{ ipData.totalReports }}</p>
+  <p><strong>Distinct Users:</strong> {{ ipData.numDistinctUsers }}</p>
+  <p><strong>Last Reported At:</strong> {{ ipData.lastReportedAt | date: 'short' }}</p>
+
+  <div *ngIf="ipData.reports && ipData.reports.length > 0">
+    <h3>Reports</h3>
+    <ul>
+      <li *ngFor="let report of ipData.reports">
+        <p><strong>Reporter ID:</strong> {{ report.reporterId }}</p>
+        <p><strong>Report Comment:</strong> {{ report.comment }}</p>
+        <p><strong>Date Reported:</strong> {{ report.reportedAt | date: 'short' }}</p>
+      </li>
+    </ul>
+  </div>
 </div>

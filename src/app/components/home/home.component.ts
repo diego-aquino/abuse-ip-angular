@@ -31,8 +31,8 @@ export class HomeComponent {
       .check(this.ip)
       .pipe(
         takeUntil(this.destroy$),
-        catchError((err) => {
-          console.error(err);
+        catchError(() => {
+          this.ip = 'Error searching for IP';
           return [];
         }),
       )

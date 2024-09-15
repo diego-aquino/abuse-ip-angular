@@ -3,7 +3,7 @@
     <app-ip-search-bar (submitSearch)="onSearchBarSubmit($event)" class="w-full" />
 
     @if (ip) {
-      <app-ip-summary [ip]="ip" class="mt-6" />
+      <app-ip-summary [ip]="ip" [ipData]="ipData" class="mt-6" />
     }
   </main>
 </div>
