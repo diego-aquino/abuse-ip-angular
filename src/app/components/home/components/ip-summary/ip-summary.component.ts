@@ -4,6 +4,7 @@ import { NgIf, NgStyle } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { NotFoundIconComponent } from '@/app/components/icons/not-found-icon/not-found-icon.component';
 import { ErrorIconComponent } from '@/app/components/icons/error-icon/error-icon.component';
+import { MatListModule } from '@angular/material/list';
 
 export interface ErrorObj {
   val: boolean;
@@ -11,14 +12,32 @@ export interface ErrorObj {
   code?: number;
 }
 
+export interface ReportI {
+  reportedAt: string;
+  comment: string;
+  categories: number[];
+  reporterId: number;
+  reporterCountryCode: string;
+  reporterCountryName: string;
+}
+
 export interface SummaryObj {
-  countryName: string;
+  ipAddress: string;
+  isPublic: boolean;
+  ipVersion: number;
+  isWhitelisted: boolean;
+  abuseConfidenceScore: number;
   countryCode: string;
+  countryName: string;
+  usageType: string;
   isp: string;
   domain: string;
-  abuseConfidenceScore: number;
+  hostnames: string[];
+  isTor: boolean;
   totalReports: number;
+  numDistinctUsers: number;
   lastReportedAt: string;
+  reports: ReportI[];
 }
 
 export interface SummaryRes {
@@ -28,7 +47,7 @@ export interface SummaryRes {
 @Component({
   selector: 'app-ip-summary',
   standalone: true,
-  imports: [NgIf, NgStyle, NotFoundIconComponent, ErrorIconComponent],
+  imports: [NgIf, NgStyle, NotFoundIconComponent, ErrorIconComponent, MatListModule],
   templateUrl: './ip-summary.component.html',
   animations: [
     trigger('fadeInOut', [
