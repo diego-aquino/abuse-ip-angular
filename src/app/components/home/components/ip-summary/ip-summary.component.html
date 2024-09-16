@@ -42,35 +42,13 @@
         <div class="clear-both"></div>
       </div>
     </div>
-    @if (summary.reports && summary.reports.length > 0) {
-      <br />
-      <h1 class="font-medium text-x2">Denúncias:</h1>
-      <mat-list>
-        @for (report of summary.reports; let i = $index; track i) {
-          <mat-list-item>
-            <span matListItemTitle
-              ><b>Denúncia {{ i + 1 }}</b></span
-            >
-            <div class="float-left max-w-[30%]">
-              <span matListItemLine><b>Relator</b>: {{ report.reporterId }}</span>
-              <span matListItemLine><b>Data</b>: {{ getDate(report.reportedAt) }}</span>
-            </div>
-            <div class="float-right min-w-[60%]">
-              <span matListItemLine><b>Comentário</b>: {{ report.comment }}</span>
-              <span matListItemLine><b>Categorias</b>: {{ report.categories.join(', ') }}</span>
-            </div>
-          </mat-list-item>
-          <br />
-        }
-      </mat-list>
-    }
   } @else {
     <div class="min-h-[148px]">
       @if (error.code === 422) {
         <div class="m-auto w-[121px]">
           <app-not-found-icon></app-not-found-icon>
         </div>
-        <p class="font-medium text-xl text-center">IP não encontrado :</p>
+        <p class="font-medium text-xl text-center">IP não encontrado :(</p>
       } @else {
         <div class="m-auto w-[121px]">
           <app-error-icon></app-error-icon>

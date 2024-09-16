@@ -1,24 +1,16 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { AbuseIpService } from '@/app/services/abuse-ip.service';
-import { CommonModule, NgIf, NgStyle } from '@angular/common';
+import { NgIf, NgStyle } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { NotFoundIconComponent } from '@/app/components/icons/not-found-icon/not-found-icon.component';
 import { ErrorIconComponent } from '@/app/components/icons/error-icon/error-icon.component';
 import { MatListModule } from '@angular/material/list';
+import { ReportI } from '../ip-reports/ip-reports.component';
 
 export interface ErrorObj {
   val: boolean;
   msg?: string;
   code?: number;
-}
-
-export interface ReportI {
-  reportedAt: string;
-  comment: string;
-  categories: number[];
-  reporterId: number;
-  reporterCountryCode: string;
-  reporterCountryName: string;
 }
 
 export interface SummaryObj {
@@ -47,7 +39,7 @@ export interface SummaryRes {
 @Component({
   selector: 'app-ip-summary',
   standalone: true,
-  imports: [NgIf, NgStyle, NotFoundIconComponent, ErrorIconComponent, MatListModule, CommonModule],
+  imports: [NgIf, NgStyle, NotFoundIconComponent, ErrorIconComponent, MatListModule],
   templateUrl: './ip-summary.component.html',
   animations: [
     trigger('fadeInOut', [
@@ -86,7 +78,6 @@ export class IPSummaryComponent implements OnChanges {
 
         this.isLoaded = true;
         this.isBlacklisted = this.blacklist.includes(this.ip);
-        console.log(this.isBlacklisted);
 
         console.log(this.summary);
       },
@@ -127,10 +118,6 @@ export class IPSummaryComponent implements OnChanges {
           msg: err.message,
           code: err.status,
         };
-
-        this.isLoaded = true;
-
-        console.log(this.error);
        },
     });
   }
