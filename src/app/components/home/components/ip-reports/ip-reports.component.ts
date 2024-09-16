@@ -5,7 +5,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { NotFoundIconComponent } from '@/app/components/icons/not-found-icon/not-found-icon.component';
 import { ErrorIconComponent } from '@/app/components/icons/error-icon/error-icon.component';
 import { MatListModule } from '@angular/material/list';
-import { ReportI } from '../ip-reports/ip-reports.component';
+import { SummaryObj, SummaryRes } from '../ip-summary/ip-summary.component';
 
 export interface ErrorObj {
   val: boolean;
@@ -13,34 +13,20 @@ export interface ErrorObj {
   code?: number;
 }
 
-export interface SummaryObj {
-  ipAddress: string;
-  isPublic: boolean;
-  ipVersion: number;
-  isWhitelisted: boolean;
-  abuseConfidenceScore: number;
-  countryCode: string;
-  countryName: string;
-  usageType: string;
-  isp: string;
-  domain: string;
-  hostnames: string[];
-  isTor: boolean;
-  totalReports: number;
-  numDistinctUsers: number;
-  lastReportedAt: string;
-  reports: ReportI[];
-}
-
-export interface SummaryRes {
-  data: SummaryObj;
+export interface ReportI {
+  reportedAt: string;
+  comment: string;
+  categories: number[];
+  reporterId: number;
+  reporterCountryCode: string;
+  reporterCountryName: string;
 }
 
 @Component({
-  selector: 'app-ip-summary',
+  selector: 'app-ip-reports',
   standalone: true,
   imports: [NgIf, NgStyle, NotFoundIconComponent, ErrorIconComponent, MatListModule],
-  templateUrl: './ip-summary.component.html',
+  templateUrl: './ip-reports.component.html',
   animations: [
     trigger('fadeInOut', [
       transition(':enter', [style({ opacity: 0 }), animate('800ms 800ms', style({ opacity: 1 }))]),
@@ -48,7 +34,7 @@ export interface SummaryRes {
     ]),
   ],
 })
-export class IPSummaryComponent implements OnChanges {
+export class IPReportsComponent implements OnChanges {
   @Input() ip = '';
   summary!: SummaryObj;
   isLoaded!: boolean;
