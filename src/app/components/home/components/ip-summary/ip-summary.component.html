@@ -1,27 +1,46 @@
 <div *ngIf="isLoaded" [@fadeInOut]="isLoaded" class="py-4 px-6 bg-surface-medium rounded-lg">
   @if (!error.val) {
-    <h1 class="font-medium text-xl">IP: {{ ip }}</h1>
-
-    <div class="mt-[1em] leading-[2em]">
-      <div class="float-left min-w-[40%]">
-        <p><b>País: </b>{{ summary.countryName }} ({{ summary.countryCode }})</p>
-        <p><b>ISP: </b>{{ summary.isp }}</p>
-        <p><b>Domínio: </b>{{ summary.domain }}</p>
-      </div>
-
-      <div class="float-right min-w-[35%]">
-        <p>
-          <b
-            >Abuse Confidence Score:
-            <span [style.color]="'#' + getTextColor(summary.abuseConfidenceScore)">{{
-              summary.abuseConfidenceScore
-            }}</span></b
+    <div
+      [ngStyle]="isBlacklisted ? {
+        'border': '2px solid red',
+        'border-radius': '0.375rem',
+        'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)',
+        'padding': '1rem'
+      } : {}"
+    >
+      <h1 class="font-medium text-xl flex items-center">
+        IP: {{ ip }}
+        @if (isBlacklisted) {
+          <span
+            class="ml-2 text-500 text-sm ml-auto"
+            [ngStyle]="isBlacklisted ? { 'color': 'red' } : {}"
           >
-        </p>
-        <p><b>Total de denúncias: </b>{{ summary.totalReports }}</p>
-        <p><b>Última denúncia: </b>{{ getDate(summary.lastReportedAt) }}</p>
+            Blacklisted
+          </span>
+        }
+      </h1>
+
+      <div class="mt-[1em] leading-[2em]">
+        <div class="float-left min-w-[40%]">
+          <p><b>País: </b>{{ summary.countryName }} ({{ summary.countryCode }})</p>
+          <p><b>ISP: </b>{{ summary.isp }}</p>
+          <p><b>Domínio: </b>{{ summary.domain }}</p>
+        </div>
+
+        <div class="float-right min-w-[35%]">
+          <p>
+            <b
+              >Abuse Confidence Score:
+              <span [style.color]="'#' + getTextColor(summary.abuseConfidenceScore)">{{
+                summary.abuseConfidenceScore
+              }}</span></b
+            >
+          </p>
+          <p><b>Total de denúncias: </b>{{ summary.totalReports }}</p>
+          <p><b>Última denúncia: </b>{{ getDate(summary.lastReportedAt) }}</p>
+        </div>
+        <div class="clear-both"></div>
       </div>
-      <div class="clear-both"></div>
     </div>
     @if (summary.reports && summary.reports.length > 0) {
       <br />
@@ -51,7 +70,7 @@
         <div class="m-auto w-[121px]">
           <app-not-found-icon></app-not-found-icon>
         </div>
-        <p class="font-medium text-xl text-center">IP não encontrado :(</p>
+        <p class="font-medium text-xl text-center">IP não encontrado :</p>
       } @else {
         <div class="m-auto w-[121px]">
           <app-error-icon></app-error-icon>

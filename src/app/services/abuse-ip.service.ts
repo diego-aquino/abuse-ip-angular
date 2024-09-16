@@ -23,4 +23,17 @@ export class AbuseIpService {
       },
     });
   }
+
+  public blacklist() {
+    return this.httpClient.get(`${this.abuseIpUrl}/blacklist`, {
+      params: {
+        confidenceMinimum: '90',
+      },
+      headers: {
+        Key: this.abuseIpApiKey,
+        Accept: 'text/plain', 
+      },
+      responseType: 'text' 
+    });
+  }
 }

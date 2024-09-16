@@ -1,6 +1,6 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { AbuseIpService } from '@/app/services/abuse-ip.service';
-import { NgIf, NgStyle } from '@angular/common';
+import { CommonModule, NgIf, NgStyle } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { NotFoundIconComponent } from '@/app/components/icons/not-found-icon/not-found-icon.component';
 import { ErrorIconComponent } from '@/app/components/icons/error-icon/error-icon.component';
@@ -47,7 +47,7 @@ export interface SummaryRes {
 @Component({
   selector: 'app-ip-summary',
   standalone: true,
-  imports: [NgIf, NgStyle, NotFoundIconComponent, ErrorIconComponent, MatListModule],
+  imports: [NgIf, NgStyle, NotFoundIconComponent, ErrorIconComponent, MatListModule, CommonModule],
   templateUrl: './ip-summary.component.html',
   animations: [
     trigger('fadeInOut', [
@@ -60,11 +60,15 @@ export class IPSummaryComponent implements OnChanges {
   @Input() ip = '';
   summary!: SummaryObj;
   isLoaded!: boolean;
+  blacklist!: string[];
+  isBlacklisted!: boolean;
   error: ErrorObj = {
     val: false,
   };
 
-  constructor(private service: AbuseIpService) {}
+  constructor(private service: AbuseIpService) {
+    this.getBlacklist()
+  }
 
   ngOnChanges(): void {
     this.isLoaded = false;
@@ -81,6 +85,8 @@ export class IPSummaryComponent implements OnChanges {
         this.summary = dt.data as SummaryObj;
 
         this.isLoaded = true;
+        this.isBlacklisted = this.blacklist.includes(this.ip);
+        console.log(this.isBlacklisted);
 
         console.log(this.summary);
       },
@@ -99,6 +105,33 @@ export class IPSummaryComponent implements OnChanges {
 
         console.log(this.error);
       },
+    });
+  }
+
+  getBlacklist() {
+    const response = this.service.blacklist();
+
+    response.subscribe({
+      next: (data: string) => {
+        this.blacklist = data.split('\n').filter(ip => ip.trim() !== '');
+    
+        console.log(this.blacklist);
+      },
+      error: (err) => { 
+        console.log(err);
+
+        this.summary = {} as SummaryObj;
+
+        this.error = {
+          val: true,
+          msg: err.message,
+          code: err.status,
+        };
+
+        this.isLoaded = true;
+
+        console.log(this.error);
+       },
     });
   }
 
