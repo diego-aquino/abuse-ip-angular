@@ -105,8 +105,6 @@ export class IPSummaryComponent implements OnChanges {
     response.subscribe({
       next: (data: string) => {
         this.blacklist = data.split('\n').filter(ip => ip.trim() !== '');
-    
-        console.log(this.blacklist);
       },
       error: (err) => { 
         console.log(err);
