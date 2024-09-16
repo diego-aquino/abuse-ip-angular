@@ -4,11 +4,12 @@ import {
   IPSearchBarComponent,
 } from './components/ip-search-bar/ip-search-bar.component';
 import { IPSummaryComponent } from './components/ip-summary/ip-summary.component';
+import { IPReportsComponent } from './components/ip-reports/ip-reports.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [IPSearchBarComponent, IPSummaryComponent],
+  imports: [IPSearchBarComponent, IPSummaryComponent, IPReportsComponent],
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
