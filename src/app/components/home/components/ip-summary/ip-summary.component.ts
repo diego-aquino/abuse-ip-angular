@@ -62,11 +62,9 @@ export class IPSummaryComponent implements OnChanges {
         this.summary = dt.data as SummaryObj;
 
         this.isLoaded = true;
-
-        console.log(this.summary);
+        
       },
       error: (err) => {
-        console.log(err);
 
         this.summary = {} as SummaryObj;
 
@@ -78,7 +76,6 @@ export class IPSummaryComponent implements OnChanges {
 
         this.isLoaded = true;
 
-        console.log(this.error);
       },
     });
   }
