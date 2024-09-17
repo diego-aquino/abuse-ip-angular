@@ -78,7 +78,7 @@ export class IPSummaryComponent implements OnChanges {
         this.summary = dt.data as SummaryObj;
 
         this.isLoaded = true;
-        this.isBlacklisted = this.blacklist.includes(this.ip);
+        if (this.blacklist) this.isBlacklisted = this.blacklist.includes(this.ip);
 
         console.log(this.summary);
       },
