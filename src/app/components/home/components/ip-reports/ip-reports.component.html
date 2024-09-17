@@ -1,0 +1,28 @@
+<div *ngIf="isLoaded" [@fadeInOut]="isLoaded" class="py-4 px-6 bg-surface-medium rounded-lg">
+  @if (!error.val) {
+    <div>
+      <h1 class="font-medium text-xl">Denúncias</h1>
+      <p>{{ summary.reports.length }} resultados</p>
+    </div>
+    <br />
+    @if (summary.reports && summary.reports.length > 0) {
+      <mat-list>
+        @for (report of summary.reports; let i = $index; track i) {
+          <mat-list-item>
+            <span matListItemTitle
+              ><b>Denúncia {{ i + 1 }}</b></span
+            >
+            <span matListItemLine><b>Relator</b>: {{ report.reporterId }}</span>
+            <span matListItemLine><b>Data</b>: {{ getDate(report.reportedAt) }}</span>
+            <span matListItemLine class="max-w-full !whitespace-normal !break-all">
+              <b>Comentário</b>:
+              {{ report.comment }}
+            </span>
+            <span matListItemLine><b>Categorias</b>: {{ report.categories.join(', ') }}</span>
+          </mat-list-item>
+          <br />
+        }
+      </mat-list>
+    }
+  }
+</div>
