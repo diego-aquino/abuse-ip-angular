@@ -60,7 +60,6 @@ export class IPReportsComponent implements OnChanges {
 
         this.isLoaded = true;
 
-        console.log(this.summary);
       },
       error: (err) => {
         console.log(err);
