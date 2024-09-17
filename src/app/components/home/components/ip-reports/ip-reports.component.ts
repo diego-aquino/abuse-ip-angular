@@ -59,12 +59,8 @@ export class IPReportsComponent implements OnChanges {
         this.summary = dt.data as SummaryObj;
 
         this.isLoaded = true;
-
-        console.log(this.summary);
       },
       error: (err) => {
-        console.log(err);
-
         this.summary = {} as SummaryObj;
 
         this.error = {
@@ -74,8 +70,6 @@ export class IPReportsComponent implements OnChanges {
         };
 
         this.isLoaded = true;
-
-        console.log(this.error);
       },
     });
   }
@@ -87,19 +81,5 @@ export class IPReportsComponent implements OnChanges {
       const d = new Date(strDate);
       return d.toLocaleDateString('en-GB');
     }
-  }
-
-  getTextColor(num: number): string {
-    let result = '';
-
-    if (num <= 25) {
-      result = 'D11E00';
-    } else if (num < 70) {
-      result = 'FFA318';
-    } else {
-      result = '3B9410';
-    }
-
-    return result;
   }
 }

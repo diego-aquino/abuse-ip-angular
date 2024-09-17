@@ -83,7 +83,6 @@ export class IPSummaryComponent implements OnChanges {
         console.log(this.summary);
       },
       error: (err) => {
-        console.log(err);
 
         this.summary = {} as SummaryObj;
 
@@ -95,7 +94,6 @@ export class IPSummaryComponent implements OnChanges {
 
         this.isLoaded = true;
 
-        console.log(this.error);
       },
     });
   }
@@ -127,7 +125,7 @@ export class IPSummaryComponent implements OnChanges {
       return '';
     } else {
       const d = new Date(strDate);
-      return d.toLocaleDateString('en-GB');
+      return d.toLocaleDateString('pt-BR');
     }
   }
 

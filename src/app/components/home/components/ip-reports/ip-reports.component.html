@@ -1,7 +1,7 @@
 <div *ngIf="isLoaded" [@fadeInOut]="isLoaded" class="py-4 px-6 bg-surface-medium rounded-lg">
   @if (!error.val) {
     <div>
-      <h1 class="font-medium text-xl">Denúnicias</h1>
+      <h1 class="font-medium text-xl">Denúncias</h1>
       <p>{{ summary.reports.length }} resultados</p>
     </div>
     <br />
@@ -12,32 +12,17 @@
             <span matListItemTitle
               ><b>Denúncia {{ i + 1 }}</b></span
             >
-            <div class="float-left max-w-[30%]">
-              <span matListItemLine><b>Relator</b>: {{ report.reporterId }}</span>
-              <span matListItemLine><b>Data</b>: {{ getDate(report.reportedAt) }}</span>
-            </div>
-            <div class="float-right min-w-[60%]">
-              <span matListItemLine><b>Comentário</b>: {{ report.comment }}</span>
-              <span matListItemLine><b>Categorias</b>: {{ report.categories.join(', ') }}</span>
-            </div>
+            <span matListItemLine><b>Relator</b>: {{ report.reporterId }}</span>
+            <span matListItemLine><b>Data</b>: {{ getDate(report.reportedAt) }}</span>
+            <span matListItemLine class="max-w-full !whitespace-normal !break-all">
+              <b>Comentário</b>:
+              {{ report.comment }}
+            </span>
+            <span matListItemLine><b>Categorias</b>: {{ report.categories.join(', ') }}</span>
           </mat-list-item>
           <br />
         }
       </mat-list>
     }
-  } @else {
-    <div class="min-h-[148px]">
-      @if (error.code === 422) {
-        <div class="m-auto w-[121px]">
-          <app-not-found-icon></app-not-found-icon>
-        </div>
-        <p class="font-medium text-xl text-center">IP não encontrado :(</p>
-      } @else {
-        <div class="m-auto w-[121px]">
-          <app-error-icon></app-error-icon>
-        </div>
-        <p class="font-medium text-xl text-center">Houve um erro. Tente novamente.</p>
-      }
-    </div>
   }
 </div>
