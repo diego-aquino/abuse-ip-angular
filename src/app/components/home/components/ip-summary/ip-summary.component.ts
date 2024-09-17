@@ -6,6 +6,7 @@ import { NotFoundIconComponent } from '@/app/components/icons/not-found-icon/not
 import { ErrorIconComponent } from '@/app/components/icons/error-icon/error-icon.component';
 import { MatListModule } from '@angular/material/list';
 import { ReportI } from '../ip-reports/ip-reports.component';
+import { map } from 'rxjs';
 
 export interface ErrorObj {
   val: boolean;
@@ -52,11 +53,15 @@ export class IPSummaryComponent implements OnChanges {
   @Input() ip = '';
   summary!: SummaryObj;
   isLoaded!: boolean;
+  blacklist!: string[];
+  isBlacklisted!: boolean;
   error: ErrorObj = {
     val: false,
   };
 
-  constructor(private service: AbuseIpService) {}
+  constructor(private service: AbuseIpService) {
+    this.getBlacklist()
+  }
 
   ngOnChanges(): void {
     this.isLoaded = false;
@@ -73,7 +78,9 @@ export class IPSummaryComponent implements OnChanges {
         this.summary = dt.data as SummaryObj;
 
         this.isLoaded = true;
-        
+        if (this.blacklist) this.isBlacklisted = this.blacklist.includes(this.ip);
+
+        console.log(this.summary);
       },
       error: (err) => {
 
@@ -89,6 +96,28 @@ export class IPSummaryComponent implements OnChanges {
 
       },
     });
+  }
+
+  
+  getBlacklist() {
+    this.service
+      .blacklist()
+      .pipe(map((data: string) => data.split('\n').filter((ip) => ip.trim() !== '')))
+      .subscribe({
+        next: (blacklist: string[]) => {
+          this.blacklist = blacklist;
+          console.log(this.blacklist);
+        },
+        error: (err) => {
+          console.log(err);
+          this.summary = {} as SummaryObj;
+          this.error = {
+            val: true,
+            msg: err.message,
+            code: err.status,
+          };
+        },
+      });
   }
 
   getDate(strDate: string) {
