@@ -88,7 +88,7 @@ export class IPSummaryComponent implements OnChanges {
       return '';
     } else {
       const d = new Date(strDate);
-      return d.toLocaleDateString('en-GB');
+      return d.toLocaleDateString('pt-BR');
     }
   }
 
